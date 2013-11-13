@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+require 'gli'
+require 'imessage'
+
+include GLI::App
+
+program_desc 'Command line tool to send iMessage.'
+
+version Imessage::VERSION
+
+desc 'Send iMessage'
+long_desc <<-EOS
+Example: $ imessage send "hello" --to "foo@example.com"
+EOS
+
+command :send do |c|
+  c.desc 'Contacts'
+  c.flag [:to, :contacts], type: Array
+
+  c.action do |global_options, options, args|
+    help_now!('Message is required') if args.empty?
+    help_now!('Contacts is required') unless options[:contacts]
+
+    Imessage::Sender.send(
+      message: args.first,
+      contacts: options[:contacts]
+    )
+  end
+end
+
+pre do |global,command,options,args|
+  true
+end
+
+post do |global,command,options,args|
+  # Post logic here
+  # Use skips_post before a command to skip this
+  # block on that command only
+end
+
+on_error do |exception|
+  # Error logic here
+  # return false to skip default error handling
+  true
+end
+
+exit run(ARGV)
