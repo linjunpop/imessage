@@ -24,7 +24,7 @@ Or install it yourself as:
 ## Usage
 
 ```
-$ imessage send "hello" --to "foo@example.com"
+$ imessage send "hello" --to "foo@example.com" --attachment 'bar.png'
 ```
 
 ## [Changelog](CHANGELOG.md)
