@@ -2,6 +2,8 @@
 
 ## master
 
+## [v0.1.0](https://github.com/linjunpop/imessage/tree/v0.1.0)
+
 * Now imessage can send attachment with `-a`.
 
 ## [v0.0.2](https://github.com/linjunpop/imessage/tree/v0.0.2)
