@@ -10,19 +10,29 @@ version Imessage::VERSION
 
 desc 'Send iMessage'
 long_desc <<-EOS
-Example: $ imessage send "hello" --to "foo@example.com"
+Example: $ imessage send "hello" --to "foo@example.com" --attachment 'oh.png'
 EOS
 
 command :send do |c|
   c.desc 'Contacts'
   c.flag [:to, :contacts], type: Array
+  c.flag [:a, :attachment], type: String
 
   c.action do |global_options, options, args|
-    help_now!('Message is required') if args.empty?
+    help_now!('Message or Attachment is required') if !options[:attachment] && args.empty?
     help_now!('Contacts is required') unless options[:contacts]
 
-    Imessage::Sender.send(
-      message: args.first,
+    attachment = options[:attachment]
+    if File.exists?(attachment)
+      attachment = File.expand_path(attachment)
+    else
+      exit_now!("Can not find file #{attachment}")
+    end
+
+    sender = Imessage::Sender.new
+    sender.deliver(
+      text: args.first,
+      attachment: attachment,
       contacts: options[:contacts]
     )
   end
