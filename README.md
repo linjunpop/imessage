@@ -1,4 +1,4 @@
-# Imessage
+# imessage
 
 Command line tool to send iMessage.
 
