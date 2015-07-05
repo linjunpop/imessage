@@ -2,6 +2,10 @@
 
 ## master
 
+## [v0.1.1](https://github.com/linjunpop/imessage/tree/v0.1.1)
+
+* Fixes fail to send messages without attachment. [#3](https://github.com/linjunpop/imessage/issues/3)
+
 ## [v0.1.0](https://github.com/linjunpop/imessage/tree/v0.1.0)
 
 * Now imessage can send attachment with `-a`.
