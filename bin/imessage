@@ -22,11 +22,12 @@ command :send do |c|
     help_now!('Message or Attachment is required') if !options[:attachment] && args.empty?
     help_now!('Contacts is required') unless options[:contacts]
 
-    attachment = options[:attachment]
-    if File.exists?(attachment)
-      attachment = File.expand_path(attachment)
-    else
-      exit_now!("Can not find file #{attachment}")
+    if attachment = options[:attachment]
+      if File.exists?(attachment)
+        attachment = File.expand_path(attachment)
+      else
+        exit_now!("Can not find file #{attachment}")
+      end
     end
 
     sender = Imessage::Sender.new
