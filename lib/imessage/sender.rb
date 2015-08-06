@@ -1,7 +1,5 @@
 module Imessage
   class Sender
-    TYPES = [:text, :attachment]
-
     def deliver(options = {text:nil, attachment:nil, contacts: []})
       options[:contacts].each do |contact|
         _deliver(options[:text], options[:attachment], contact)
