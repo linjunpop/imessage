@@ -1,8 +1,6 @@
 require 'optparse'
 require 'ostruct'
 
-require_relative 'version'
-
 module Imessage
   class Parser
     class << self
@@ -52,7 +50,7 @@ module Imessage
           end
 
           opts.on_tail("--version", "Show version") do
-            puts "Version: #{Imessage::VERSION}"
+            puts "imessage v#{Imessage::VERSION}"
             exit
           end
         end
