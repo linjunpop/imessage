@@ -2,6 +2,8 @@
 
 ## master
 
+## [v0.2.0](https://github.com/linjunpop/imessage/tree/v0.2.0)
+
 * Make it possible to run imessage standalone.
 
 ## [v0.1.1](https://github.com/linjunpop/imessage/tree/v0.1.1)
