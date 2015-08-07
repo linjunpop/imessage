@@ -23,8 +23,23 @@ Or install it yourself as:
 
 ## Usage
 
+```shell
+Usage: imessage [options]
+
+Specific options:
+    -t, --text [TEXT]                The TEXT to deliver
+    -a, --attachment [ATTACHMENT]    Add an attachment
+    -c, --contacts x,y,z             Develier message to these CONTACTS
+
+Common options:
+    -h, --help                       Prints this help
+        --version                    Show version
 ```
-$ imessage send "hello" --to "foo@example.com" --attachment 'bar.png'
+
+## Example
+
+```
+$ imessage --text "hello" --contacts "foo@example.com" --attachment 'bar.png'
 ```
 
 ## [Changelog](CHANGELOG.md)
