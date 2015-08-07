@@ -1,5 +1,3 @@
-require "bundler/gem_tasks"
-
 desc "Build standalone version of imessage"
 task :standalone do
   mkdir_p "build"
@@ -21,7 +19,7 @@ task :standalone do
 end
 
 desc "Install standalone script"
-task :install_standalone => :standalone do
+task :install => :standalone do
   prefix = ENV['PREFIX'] || ENV['prefix'] || '/usr/local'
 
   FileUtils.mkdir_p "#{prefix}/bin"
