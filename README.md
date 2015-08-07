@@ -29,7 +29,7 @@ Usage: imessage [options]
 Specific options:
     -t, --text [TEXT]                The TEXT to deliver
     -a, --attachment [ATTACHMENT]    Add an attachment
-    -c, --contacts x,y,z             Develier message to these CONTACTS
+    -c, --contacts x,y,z             Deliver message to these CONTACTS
 
 Common options:
     -h, --help                       Prints this help
