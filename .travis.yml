@@ -1,5 +1,5 @@
 language: ruby
-script: "bundle exec rspec spec"
+script: "bundle exec rake -f Rakefile.dev"
 rvm:
   - 2.0.0
   - ruby-head

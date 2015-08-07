@@ -1,7 +1,5 @@
 module Imessage
   class Sender
-    TYPES = [:text, :attachment]
-
     def deliver(options = {text:nil, attachment:nil, contacts: []})
       options[:contacts].each do |contact|
         _deliver(options[:text], options[:attachment], contact)
@@ -12,13 +10,36 @@ module Imessage
 
     def _deliver(text, attachment, contact)
       unless text.nil?
-        apple_script_file = File.join(File.dirname(File.expand_path(__FILE__)), 'scripts/send_text.applescript')
-        `osascript #{apple_script_file} '#{contact}' '#{text}'`
+        script = <<-SCRIPT
+        on run argv
+                set toAddress to first item of argv
+                set message to second item of argv
+                tell application "Messages"
+                        send message to buddy toAddress of (service 1 whose service type is iMessage)
+                end tell
+        end run
+        SCRIPT
+        `osascript -e '#{script}' '#{contact}' '#{text}'`
       end
 
       unless attachment.nil?
-        apple_script_file = File.join(File.dirname(File.expand_path(__FILE__)), 'scripts/send_attachment.applescript')
-        `osascript #{apple_script_file} '#{contact}' '#{attachment}'`
+        script = <<-SCRIPT
+        on run argv
+                set toAddress to first item of argv
+                set theFilePath to second item of argv
+                set theFile to POSIX file theFilePath
+                tell application "System Events"
+                        if exists file theFilePath then
+                                tell application "Messages"
+                                        send theFile to buddy toAddress of (service 1 whose service type is iMessage)
+                                end tell
+                        else
+                                error "File not exist."
+                        end if
+                end tell
+        end run
+        SCRIPT
+        `osascript -e'#{script}' '#{contact}' '#{attachment}'`
       end
     end
   end

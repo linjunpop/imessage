@@ -2,6 +2,8 @@
 
 ## master
 
+* Make it possible to run imessage standalone.
+
 ## [v0.1.1](https://github.com/linjunpop/imessage/tree/v0.1.1)
 
 * Fixes fail to send messages without attachment. [#3](https://github.com/linjunpop/imessage/issues/3)
@@ -17,4 +19,3 @@
 ## [v0.0.1](https://github.com/linjunpop/imessage/tree/v0.0.1)
 
 * Implement send iMessage.
-
