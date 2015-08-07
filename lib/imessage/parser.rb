@@ -37,7 +37,7 @@ module Imessage
             end
           end
 
-          opts.on("-c", "--contacts x,y,z", Array, "Develier message to these CONTACTS") do |contacts|
+          opts.on("-c", "--contacts x,y,z", Array, "Deliver message to these CONTACTS") do |contacts|
             args.contacts = contacts
           end
 
