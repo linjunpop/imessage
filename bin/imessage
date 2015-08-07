@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'imessage'
+require_relative '../lib/imessage'
+
 ARGV << '--help' if ARGV.empty?
 
 options = Imessage::Parser.parse(ARGV)

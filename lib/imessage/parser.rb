@@ -1,7 +1,7 @@
 require 'optparse'
 require 'ostruct'
 
-require_relative './version'
+require_relative 'version'
 
 module Imessage
   class Parser
@@ -20,7 +20,7 @@ module Imessage
       private
 
       def opt_parser(args)
-        opt_parser = OptionParser.new do |opts|
+        OptionParser.new do |opts|
           opts.banner = "Usage: imessage [options]"
 
           opts.separator ""
@@ -38,7 +38,7 @@ module Imessage
               exit(1)
             end
           end
-        
+
           opts.on("-c", "--contacts x,y,z", Array, "Develier message to these CONTACTS") do |contacts|
             args.contacts = contacts
           end
