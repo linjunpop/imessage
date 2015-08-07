@@ -1,0 +1,129 @@
+#!/usr/bin/env ruby
+# This file is generated from https://github.com/linjunpop/imessage using `rake standalone`
+# any changes will be overwritten.
+
+module Imessage
+end
+
+module Imessage
+  VERSION = "0.1.1"
+end
+require 'optparse'
+require 'ostruct'
+
+module Imessage
+  class Parser
+    class << self
+      def parse(options)
+        OpenStruct.new.tap do |args|
+          args.contacts = []
+          args.text = nil
+          args.attachment = nil
+          args.verbose = false
+
+          opt_parser(args).parse!(options)
+        end
+      end
+
+      private
+
+      def opt_parser(args)
+        OptionParser.new do |opts|
+          opts.banner = "Usage: imessage [options]"
+
+          opts.separator ""
+          opts.separator "Specific options:"
+
+          opts.on("-t", "--text [TEXT]", String, "The TEXT to deliver") do |text|
+            args.text = text
+          end
+
+          opts.on("-a", "--attachment [ATTACHMENT]", String, "Add an attachment") do |attachment|
+            if File.exists?(attachment)
+              args.attachment = File.expand_path(attachment)
+            else
+              puts "Can not find file #{attachment}"
+              exit(1)
+            end
+          end
+
+          opts.on("-c", "--contacts x,y,z", Array, "Develier message to these CONTACTS") do |contacts|
+            args.contacts = contacts
+          end
+
+          opts.separator ""
+          opts.separator "Common options:"
+
+          opts.on("-h", "--help", "Prints this help") do
+            puts opts
+            exit
+          end
+
+          opts.on_tail("--version", "Show version") do
+            puts "imessage v#{Imessage::VERSION}"
+            exit
+          end
+        end
+      end
+    end
+  end
+end
+module Imessage
+  class Sender
+    def deliver(options = {text:nil, attachment:nil, contacts: []})
+      options[:contacts].each do |contact|
+        _deliver(options[:text], options[:attachment], contact)
+      end
+    end
+
+    private
+
+    def _deliver(text, attachment, contact)
+      unless text.nil?
+        script = <<-SCRIPT
+        on run argv
+                set toAddress to first item of argv
+                set message to second item of argv
+                tell application "Messages"
+                        send message to buddy toAddress of (service 1 whose service type is iMessage)
+                end tell
+        end run
+        SCRIPT
+        `osascript -e '#{script}' '#{contact}' '#{text}'`
+      end
+
+      unless attachment.nil?
+        script = <<-SCRIPT
+        on run argv
+                set toAddress to first item of argv
+                set theFilePath to second item of argv
+                set theFile to POSIX file theFilePath
+                tell application "System Events"
+                        if exists file theFilePath then
+                                tell application "Messages"
+                                        send theFile to buddy toAddress of (service 1 whose service type is iMessage)
+                                end tell
+                        else
+                                error "File not exist."
+                        end if
+                end tell
+        end run
+        SCRIPT
+        `osascript -e'#{script}' '#{contact}' '#{attachment}'`
+      end
+    end
+  end
+end
+
+
+
+ARGV << '--help' if ARGV.empty?
+
+options = Imessage::Parser.parse(ARGV)
+
+sender = Imessage::Sender.new
+sender.deliver({
+  text: options.text,
+  attachment: options.attachment,
+  contacts: options.contacts
+})
