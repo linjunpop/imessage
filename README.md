@@ -9,6 +9,12 @@ Command line tool to send iMessage.
 
 ## Installation
 
+### As a Homebrew(http://brew.sh) package
+
+    $ brew install imessage-ruby
+
+### As a gem
+
 Add this line to your application's Gemfile:
 
     gem 'imessage'
