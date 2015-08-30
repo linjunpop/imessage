@@ -5,6 +5,10 @@ module Imessage
         raise "You must specific at least a text or attachment."
       end
 
+      if options[:contacts].empty?
+        raise "You must specific at least one contact"
+      end
+
       options[:contacts].each do |contact|
         _deliver(options[:text], options[:attachment], contact)
       end

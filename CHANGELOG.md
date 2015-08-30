@@ -2,6 +2,10 @@
 
 ## master
 
+* Raise error if no contacts specified.
+* Update project structure for better development experience.
+* Fixes typo in help message [@bfontaine](https://github.com/bfontaine)
+
 ## [v0.2.0](https://github.com/linjunpop/imessage/tree/v0.2.0)
 
 * Make it possible to run imessage standalone.
