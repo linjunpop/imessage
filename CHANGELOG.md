@@ -2,6 +2,8 @@
 
 ## master
 
+## [v0.3.0](https://github.com/linjunpop/imessage/tree/v0.3.0)
+
 * Raise error if no contacts specified.
 * Update project structure for better development experience.
 * Fixes typo in help message [@bfontaine](https://github.com/bfontaine)
