@@ -1,7 +1,12 @@
-require "bundler/gem_tasks"
-require 'rspec/core/rake_task'
+# Skip these tasks when being installed by Homebrew
+unless ENV['HOMEBREW_BREW_FILE']
+  require "bundler/gem_tasks"
+  require 'rspec/core/rake_task'
 
-RSpec::Core::RakeTask.new(:spec)
+  RSpec::Core::RakeTask.new(:spec)
+
+  task :default => :spec
+end
 
 namespace :standalone do
   desc "Build standalone version of imessage"
@@ -32,5 +37,3 @@ namespace :standalone do
     FileUtils.cp "build/imessage", "#{prefix}/bin"
   end
 end
-
-task default: :spec
