@@ -2,6 +2,10 @@
 
 ## master
 
+## [v0.3.1](https://github.com/linjunpop/imessage/tree/v0.3.1)
+
+* Skip dev tasks when being installed by Homebrew
+
 ## [v0.3.0](https://github.com/linjunpop/imessage/tree/v0.3.0)
 
 * Raise error if no contacts specified.
