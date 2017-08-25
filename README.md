@@ -3,7 +3,7 @@
 Command line tool to send iMessage.
 
 [![Build Status](https://travis-ci.org/linjunpop/imessage.png?branch=master)](https://travis-ci.org/linjunpop/imessage)
-[![Gem Version](https://badge.fury.io/rb/imessage.png)](http://badge.fury.io/rb/imessage)
+[![Gem Version](https://img.shields.io/gem/v/imessage.svg)](https://rubygems.org/gems/imessage)
 [![codebeat badge](https://codebeat.co/badges/69f6f8ee-8ddd-4355-aa7c-0cd4ac369718)](https://codebeat.co/projects/github-com-linjunpop-imessage-master)
 [![Beerpay](https://beerpay.io/linjunpop/imessage/badge.svg)](https://beerpay.io/linjunpop/imessage)
 
