@@ -2,6 +2,8 @@
 
 ## master
 
+## [v0.3.2](https://github.com/linjunpop/imessage/tree/v0.3.2)
+
 - Fixes Unable to send the single quote(') in message body. [#13](https://github.com/linjunpop/imessage/issues/13)
 
 ## [v0.3.1](https://github.com/linjunpop/imessage/tree/v0.3.1)
