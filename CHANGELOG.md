@@ -2,6 +2,8 @@
 
 ## master
 
+## [v0.3.3](https://github.com/linjunpop/imessage/tree/v0.3.3)
+
 - Fixes the Apple Script files should be copied to homebrew directory. [#15](https://github.com/linjunpop/imessage/issues/15)
 
 ## [v0.3.2](https://github.com/linjunpop/imessage/tree/v0.3.2)
