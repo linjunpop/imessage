@@ -1,4 +1,4 @@
-require 'shellwords'
+require 'pathname'
 
 module Imessage
   class Sender
@@ -30,25 +30,28 @@ module Imessage
     end
 
     def deliver_attachment(attachment, contact)
-      apple_script_file = File.join(File.dirname(File.expand_path(__FILE__)), 'scripts/send_attachment.applescript')
+      apple_script_file_path = build_apple_script_file_path('send_attachment')
 
       cmd = <<~CMD.strip
-        osascript #{apple_script_file} "#{contact}" "#{attachment}"
+        osascript #{apple_script_file_path} "#{contact}" "#{attachment}"
       CMD
 
       system cmd
     end
 
     def deliver_text(text, contact)
-      apple_script_file = File.join(File.dirname(File.expand_path(__FILE__)), 'apple_scripts/send_text.applescript')
+      apple_script_file_path = build_apple_script_file_path('send_text')
 
       cmd = <<~CMD.strip
-        osascript #{apple_script_file} "#{contact}" "#{text}"
+        osascript #{apple_script_file_path} "#{contact}" "#{text}"
       CMD
 
-      puts cmd
-
       system cmd
+    end
+
+    def build_apple_script_file_path(filename)
+      filepath = File.dirname(Pathname.new(__FILE__).realpath)
+      File.join(filepath, "apple_scripts/#{filename}.applescript")
     end
   end
 end
