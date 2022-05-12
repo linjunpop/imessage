@@ -8,12 +8,12 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Jun Lin']
   spec.email         = ['linjunpop@gmail.com']
 
-  spec.summary       = 'Command line tool to send iMessage.'
-  spec.description   = 'Command line tool to send iMessage.'
+  spec.summary       = 'Send text and attachment in Message.app on macOS.'
+  spec.description   = 'A command line tool to send text and attachment in Message.app.'
   spec.homepage      = 'https://github.com/linjunpop/imessage'
   spec.license       = 'MIT'
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files         = Dir['lib/**/*.rb'] + Dir['lib/**/*.applescript'] + Dir['exe/*']
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']

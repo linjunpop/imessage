@@ -8,7 +8,7 @@ options = Imessage::Parser.parse(ARGV)
 
 sender = Imessage::Sender.new
 sender.deliver({
-  text: options.text,
-  attachment: options.attachment,
-  contacts: options.contacts
-})
+                 text: options.text,
+                 attachment: options.attachment,
+                 contacts: options.contacts
+               })
