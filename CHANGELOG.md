@@ -2,6 +2,8 @@
 
 ## master
 
+## [v0.4.0](https://github.com/linjunpop/imessage/tree/v0.4.0)
+
 - Allow gem to build correctly without git installed.
 
 ## [v0.3.3](https://github.com/linjunpop/imessage/tree/v0.3.3)
